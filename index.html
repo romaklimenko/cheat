@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Letterpress Cheat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="./css/vendor/bootstrap-responsive.css" rel="stylesheet">
+  <link href="./css/main.css" rel="stylesheet">
+</head>
+<body>
+
+  <a href="https://github.com/romaklimenko/cheat" class="hidden-phone">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+    src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
+    alt="Fork me on GitHub">
+  </a>
+
+  <div class="container-fluid">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="/">Letterpress cheat</a>
+      </div>
+    </div>
+
+    <div class="alert alert-warn" data-bind="visible: total == ''">
+      Loading dictionary (~2.8 Mb)
+    </div>
+
+    <div
+      class="alert alert-info"
+      style="display: none;"
+      data-bind="visible: total != ''">
+      <span data-bind="text: total"></span>
+      words in the dictionary
+      <a href="https://github.com/atebits/Words" target="_blank">
+        <sup>see more</sup>
+      </a>
+    </div>
+
+    <div
+      class="control-group"
+      style="display: none;"
+      data-bind="visible: total != ''">
+      <label class="control-label" for="input-letters">Letters</label>
+      <div class="controls">
+        <input
+          id="input-letters"
+          type="text"
+          autocapitalize="off"
+          autocorrect="off"
+          placeholder="Type all letters from the grid..."
+          class="span4"
+          maxlength="25">
+      </div>
+      <label
+        class="control-label"
+        for="input-search">Required letters</label>
+      <div class="controls">
+        <input
+          id="input-required-letters"
+          data-bind="value: requiredLetters, valueUpdate: 'afterkeyup'"
+          type="text"
+          autocapitalize="off"
+          autocorrect="off"
+          placeholder="Type required letters..."
+          class="span4"
+          maxlength="25">
+      </div>
+    </div>
+
+    <div
+      class="alert alert-info"
+      style="display: none;"
+      data-bind="visible: total != ''">
+      <span data-bind="text: found"></span> words found.
+    </div>
+
+    <p data-bind="text: wordsString"></p>
+  </div>
+  <div style="position:fixed; top:97%; left: 10px;">
+    <a href="./test.html" target="_blank">Tests</a>
+  </div>
+  <script src="./js/require.js"></script>
+  <script type="text/javascript">
+    if (location.hostname === 'cheat.dev'
+      || window.location.origin === 'file://') {
+      require({baseUrl:'./js'},['main'],function(){});
+    }
+    else {
+      require({baseUrl:'./min/js'},['main'],function(){});
+    }
+  </script>
+  <script type="text/javascript">
+    var _gauges = _gauges || [];
+    (function() {
+      if (window.location.origin === 'file://'
+        || window.location.hostname === 'cheat.dev') { return; };
+      var t   = document.createElement('script');
+      t.type  = 'text/javascript';
+      t.async = true;
+      t.id    = 'gauges-tracker';
+      t.setAttribute('data-site-id', '4fa27221613f5d641e0000d0');
+      t.src = '//secure.gaug.es/track.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(t, s);
+    })();
+  </script>
+</body>
+</html>
