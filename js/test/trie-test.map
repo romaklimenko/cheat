@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "trie-test.js",
+  "sourceRoot": "",
+  "sources": [
+    "trie-test.coffee.md"
+  ],
+  "names": [],
+  "mappings": ";;AAEA;CAAA,KAAA,EAAA;CAAA;CAAA,CAAM;CAAN;CAAA;;CAAA;;CAAA;CAAA"
+}
