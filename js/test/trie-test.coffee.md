@@ -2,9 +2,15 @@
 
     describe 'Trie', ->
 
+      describe '#children', ->
+
+        it 'should be empty array when trie is just created', ->
+          trie = new LetterpressCheat.Trie
+          chai.assert.deepEqual(trie.children, [])
+
       describe '#parent', ->
 
-        it 'parent should be undefined when trie just created', ->
+        it 'should be undefined when trie is just created', ->
           trie = new LetterpressCheat.Trie
           chai.assert.isUndefined(trie.parent)
 

@@ -3,8 +3,15 @@
 (function() {
 
   describe('Trie', function() {
+    describe('#children', function() {
+      return it('should be empty array when trie is just created', function() {
+        var trie;
+        trie = new LetterpressCheat.Trie;
+        return chai.assert.deepEqual(trie.children, []);
+      });
+    });
     describe('#parent', function() {
-      return it('parent should be undefined when trie just created', function() {
+      return it('should be undefined when trie is just created', function() {
         var trie;
         trie = new LetterpressCheat.Trie;
         return chai.assert.isUndefined(trie.parent);

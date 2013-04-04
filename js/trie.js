@@ -6,6 +6,8 @@
 
     function Trie() {}
 
+    Trie.prototype.children = [];
+
     Trie.prototype.parent = void 0;
 
     Trie.prototype.isRoot = function() {

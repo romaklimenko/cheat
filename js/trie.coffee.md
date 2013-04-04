@@ -4,6 +4,10 @@ The `Trie` class represents a trie (prefix tree) structure. Every `Trie` object 
 
     class LetterpressCheat.Trie
 
+`children` of `Trie` are other tries.
+
+      children: []
+
 If `Trie` has a `parent` then it' a node in parent's `Trie`.
 
       parent: undefined
