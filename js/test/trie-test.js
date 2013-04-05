@@ -3,6 +3,16 @@
 (function() {
 
   describe('Trie', function() {
+    describe('#constructor(value, parent)', function() {
+      return it('should set value and parent', function() {
+        var parent, trie, value;
+        value = 'c';
+        parent = new LetterpressCheat.Trie('p');
+        trie = new LetterpressCheat.Trie(value, parent);
+        chai.assert.equal(trie.value, value);
+        return chai.assert.equal(trie.parent, parent);
+      });
+    });
     describe('#children', function() {
       return it('should be empty array when trie is just created', function() {
         var trie;
@@ -17,7 +27,7 @@
         return chai.assert.isUndefined(trie.parent);
       });
     });
-    return describe('#isRoot', function() {
+    describe('#isRoot()', function() {
       it('should be false if parent does not exists', function() {
         var trie;
         trie = new LetterpressCheat.Trie;
@@ -25,9 +35,17 @@
       });
       return it('should be true if parent exists', function() {
         var trie;
-        trie = new LetterpressCheat.Trie;
-        trie.parent = new Object;
+        trie = new LetterpressCheat.Trie('', new Object);
         return chai.assert.isTrue(trie.isRoot());
+      });
+    });
+    return describe('#append(word)', function() {
+      return it('should create a child trie with a first letter of word', function() {
+        var trie, word;
+        word = 'unpredictabilities';
+        trie = new LetterpressCheat.Trie(word.charAt(0));
+        trie.append(word.slice(1));
+        return chai.assert.equal(trie.children.length, 1);
       });
     });
   });

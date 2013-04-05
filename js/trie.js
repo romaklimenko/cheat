@@ -4,14 +4,24 @@
 
   LetterpressCheat.Trie = (function() {
 
-    function Trie() {}
-
-    Trie.prototype.children = [];
-
-    Trie.prototype.parent = void 0;
+    function Trie(value, parent) {
+      this.parent = parent;
+      this.value = value;
+      this.children = [];
+    }
 
     Trie.prototype.isRoot = function() {
       return this.parent != null;
+    };
+
+    Trie.prototype.append = function(word) {
+      var childTrie;
+      if (word.length === 0) {
+        return;
+      }
+      childTrie = new LetterpressCheat.Trie(word.charAt(0), this);
+      this.children.push(childTrie);
+      return childTrie.append(word.slice(1));
     };
 
     return Trie;

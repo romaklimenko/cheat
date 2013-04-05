@@ -4,21 +4,20 @@ The `Trie` class represents a trie (prefix tree) structure. Every `Trie` object 
 
     class LetterpressCheat.Trie
 
-`children` of `Trie` are other tries.
-
-      children: []
-
-If `Trie` has a `parent` then it' a node in parent's `Trie`.
-
-      parent: undefined
+      constructor: (value, parent) ->
+        @parent = parent
+        @value = value
+        @children = []
 
 If `parent` is `undefined` then this `Trie` is a root.
 
       isRoot: ->
         return @parent?
 
-# [] children
-# [] append
-# [] is last letter
-# [] is visited
-# [] value
+`isLastLetter` shows if current node is last letter of word. If it's true we can get this word by concatenating values from root to current node.
+
+      append: (word) ->
+        return if word.length == 0
+        childTrie = new LetterpressCheat.Trie(word.charAt(0), this)
+        @children.push(childTrie)
+        childTrie.append(word.slice(1))
