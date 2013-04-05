@@ -2,6 +2,8 @@
 
 The `Trie` class represents a trie (prefix tree) structure. Every `Trie` object could be a `Trie` and a `Trie` node at the same time.
 
+`value` is a node prefix and `children` are child nodes.
+
     class LetterpressCheat.Trie
 
       constructor: (value, parent) ->
@@ -9,12 +11,12 @@ The `Trie` class represents a trie (prefix tree) structure. Every `Trie` object 
         @value = value
         @children = []
 
-If `parent` is `undefined` then this `Trie` is a root.
+If `Trie` has a `parent`, it's not a root and vice versa.
 
       isRoot: ->
         return @parent?
 
-`isLastLetter` shows if current node is last letter of word. If it's true we can get this word by concatenating values from root to current node.
+When we `append` a word to a `Trie`, we are responsible for correct `value` of this `Trie`. If we `append` it to root, `value` should be `undefined` but if we `append` to child nodes, `value` we should set the `value`.
 
       append: (word) ->
         return if word.length == 0

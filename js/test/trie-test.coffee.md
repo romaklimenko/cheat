@@ -49,6 +49,17 @@
 
         it 'should append to existing child if child with same value already exists', ->
 
+u
+  n
+    p
+      r
+        e
+          ...
+    d
+      e
+        r
+          ...
+
           first_word = 'unpredictabilities'
           second_word = 'underfulfilling'
 
