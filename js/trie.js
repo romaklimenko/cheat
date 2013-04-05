@@ -19,8 +19,13 @@
       if (word.length === 0) {
         return;
       }
-      childTrie = new LetterpressCheat.Trie(word.charAt(0), this);
-      this.children.push(childTrie);
+      childTrie = _.find(this.children, function(child) {
+        return child.value === word.charAt(0);
+      });
+      if (childTrie === void 0) {
+        childTrie = new LetterpressCheat.Trie(word.charAt(0), this);
+        this.children.push(childTrie);
+      }
       return childTrie.append(word.slice(1));
     };
 

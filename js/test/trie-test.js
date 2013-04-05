@@ -40,12 +40,30 @@
       });
     });
     return describe('#append(word)', function() {
-      return it('should create a child trie with a first letter of word', function() {
+      it('should create a child trie with a first letter of word', function() {
         var trie, word;
         word = 'unpredictabilities';
         trie = new LetterpressCheat.Trie(word.charAt(0));
         trie.append(word.slice(1));
         return chai.assert.equal(trie.children.length, 1);
+      });
+      return it('should append to existing child if child with same value already exists', function() {
+        var first_word, n1, root, second_word, u0;
+        first_word = 'unpredictabilities';
+        second_word = 'underfulfilling';
+        root = new LetterpressCheat.Trie;
+        root.append(first_word);
+        root.append(second_word);
+        console.log(root);
+        chai.assert.equal(root.children.length, 1);
+        chai.assert.equal(root.children[0].value, 'u');
+        u0 = root.children[0];
+        chai.assert.equal(u0.children.length, 1);
+        chai.assert.equal(u0.children[0].value, 'n');
+        n1 = u0.children[0];
+        chai.assert.equal(n1.children.length, 2);
+        chai.assert.equal(n1.children[0].value, 'p');
+        return chai.assert.equal(n1.children[1].value, 'd');
       });
     });
   });

@@ -18,6 +18,13 @@ If `parent` is `undefined` then this `Trie` is a root.
 
       append: (word) ->
         return if word.length == 0
-        childTrie = new LetterpressCheat.Trie(word.charAt(0), this)
-        @children.push(childTrie)
+
+        childTrie = _.find(
+          @children,
+          (child) -> child.value is word.charAt(0))
+
+        if childTrie is undefined
+          childTrie = new LetterpressCheat.Trie(word.charAt(0), this)
+          @children.push(childTrie)
+
         childTrie.append(word.slice(1))
