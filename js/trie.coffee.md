@@ -29,4 +29,9 @@ When we `append` a word to a `Trie`, we are responsible for correct `value` of t
           childTrie = new LetterpressCheat.Trie(word.charAt(0), this)
           @children.push(childTrie)
 
-        childTrie.append(word.slice(1))
+        tail = word.slice(1)
+
+        if tail.length is 0
+          childTrie.last = true
+        else
+          childTrie.append(tail)

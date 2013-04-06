@@ -15,7 +15,7 @@
     };
 
     Trie.prototype.append = function(word) {
-      var childTrie;
+      var childTrie, tail;
       if (word.length === 0) {
         return;
       }
@@ -26,7 +26,12 @@
         childTrie = new LetterpressCheat.Trie(word.charAt(0), this);
         this.children.push(childTrie);
       }
-      return childTrie.append(word.slice(1));
+      tail = word.slice(1);
+      if (tail.length === 0) {
+        return childTrie.last = true;
+      } else {
+        return childTrie.append(tail);
+      }
     };
 
     return Trie;
