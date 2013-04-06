@@ -39,7 +39,7 @@
         return chai.assert.isTrue(trie.isRoot());
       });
     });
-    return describe('#append(word)', function() {
+    describe('#append(word)', function() {
       it('should create a child trie with a first letter of word', function() {
         var trie, word;
         word = 'unpredictabilities';
@@ -93,6 +93,24 @@
         chai.assert.isUndefined(root.children[0].children[0].children[0].children[0].last);
         chai.assert.equal(root.children[0].children[0].children[0].children[0].children[0].value, 'e');
         return chai.assert.isDefined(root.children[0].children[0].children[0].children[0].children[0].last);
+      });
+    });
+    return describe('#words(letters)', function() {
+      it('should return empty array if letters is undefined', function() {
+        var trie, words;
+        trie = new LetterpressCheat.Trie;
+        trie.append('abcde');
+        words = trie.words();
+        chai.assert.isArray(words);
+        return chai.assert.equal(words.length, 0);
+      });
+      return it('should return empty array if letters is empty', function() {
+        var trie, words;
+        trie = new LetterpressCheat.Trie;
+        trie.append('abcde');
+        words = trie.words([]);
+        chai.assert.isArray(words);
+        return chai.assert.equal(words.length, 0);
       });
     });
   });

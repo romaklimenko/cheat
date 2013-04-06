@@ -34,6 +34,14 @@
       }
     };
 
+    Trie.prototype.words = function(letters) {
+      var result;
+      result = [];
+      if (!letters || letters.length === 0) {
+        return result;
+      }
+    };
+
     return Trie;
 
   })();

@@ -153,3 +153,22 @@
               .children[0]
               .children[0]
               .children[0].last)
+      describe '#words(letters)', ->
+
+        it 'should return empty array if letters is undefined', ->
+
+          trie = new LetterpressCheat.Trie
+          trie.append('abcde')
+          words = trie.words()
+
+          chai.assert.isArray(words)
+          chai.assert.equal(words.length, 0)
+
+        it 'should return empty array if letters is empty', ->
+
+          trie = new LetterpressCheat.Trie
+          trie.append('abcde')
+          words = trie.words([])
+
+          chai.assert.isArray(words)
+          chai.assert.equal(words.length, 0)

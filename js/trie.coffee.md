@@ -35,3 +35,11 @@ When we `append` a word to a `Trie`, we are responsible for correct `value` of t
           childTrie.last = true
         else
           childTrie.append(tail)
+
+`words` functions takes an array of `letters` and returns matched words
+
+      words: (letters) ->
+
+        result = []
+
+        return result if not letters or letters.length is 0
