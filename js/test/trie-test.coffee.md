@@ -50,6 +50,7 @@
         it 'should append to existing child if child with same value already exists', ->
 
 `u-n-p-r-e-d-i-c-t-a-b-i-l-i-t-i-e-s`
+
 `  ↳-d-e-r-f-u-l-f-i-l-l-i-n-g`
 
           first_word = 'unpredictabilities'
@@ -79,17 +80,17 @@
           root = new LetterpressCheat.Trie
           root.append(first_word)
 
-*a*bc
+`*a*bc`
 
           chai.assert.equal(root.children[0].value, 'a')
           chai.assert.isUndefined(root.children[0].last)
 
-a*b*c
+`a*b*c`
 
           chai.assert.equal(root.children[0].children[0].value, 'b')
           chai.assert.isUndefined(root.children[0].children[0].last)
 
-ab*c*
+`ab*c*`
 
           chai.assert.equal(
             root.children[0].children[0].children[0].value, 'c')
@@ -104,24 +105,24 @@ ab*c*
           root.append(first_word)
           root.append(second_word)
 
-*a*bcde
+`*a*bcde`
 
           chai.assert.equal(root.children[0].value, 'a')
           chai.assert.isUndefined(root.children[0].last)
 
-a*b*cde
+`a*b*cde`
 
           chai.assert.equal(root.children[0].children[0].value, 'b')
           chai.assert.isUndefined(root.children[0].children[0].last)
 
-ab*c*de
+`ab*c*de`
 
           chai.assert.equal(
             root.children[0].children[0].children[0].value, 'c')
           chai.assert.isDefined(
             root.children[0].children[0].children[0].last)
 
-abc*d*e
+`abc*d*e`
 
           chai.assert.equal(
             root
@@ -136,7 +137,7 @@ abc*d*e
               .children[0]
               .children[0].last)
 
-abcd*e*
+`abcd*e*`
 
           chai.assert.equal(
             root
