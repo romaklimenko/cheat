@@ -43,3 +43,5 @@ When we `append` a word to a `Trie`, we are responsible for correct `value` of t
         result = []
 
         return result if not letters or letters.length is 0
+
+        []

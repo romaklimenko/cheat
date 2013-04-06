@@ -104,13 +104,25 @@
         chai.assert.isArray(words);
         return chai.assert.equal(words.length, 0);
       });
-      return it('should return empty array if letters is empty', function() {
+      it('should return empty array if letters is empty', function() {
         var trie, words;
         trie = new LetterpressCheat.Trie;
         trie.append('abcde');
         words = trie.words([]);
         chai.assert.isArray(words);
         return chai.assert.equal(words.length, 0);
+      });
+      return it('should return all the words', function() {
+        var letters, trie, words;
+        trie = new LetterpressCheat.Trie;
+        trie.append('test');
+        trie.append('forest');
+        trie.append('orest');
+        letters = ['t', 'e', 's', 't', 'o'];
+        words = trie.words(letters);
+        chai.assert.include(words, 'test');
+        chai.assert.include(words, 'orest');
+        return chai.expect(words).to.not.include('forest');
       });
     });
   });

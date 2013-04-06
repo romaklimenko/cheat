@@ -40,6 +40,7 @@
       if (!letters || letters.length === 0) {
         return result;
       }
+      return [];
     };
 
     return Trie;

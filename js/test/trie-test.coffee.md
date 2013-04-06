@@ -172,3 +172,18 @@
 
           chai.assert.isArray(words)
           chai.assert.equal(words.length, 0)
+
+        it 'should return all the words', ->
+
+          trie = new LetterpressCheat.Trie
+          trie.append('test')
+          trie.append('forest')
+          trie.append('orest')
+
+          letters = ['t', 'e', 's', 't', 'o']
+
+          words = trie.words(letters)
+
+          chai.assert.include(words, 'test')
+          chai.assert.include(words, 'orest')
+          chai.expect(words).to.not.include('forest')
