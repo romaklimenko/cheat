@@ -74,12 +74,11 @@
         if (groups[child.value] > 0) {
           clone = _.clone(groups);
           clone[child.value]--;
-          _.union(result, child.words(clone));
-        } else {
-
+          result = result.concat(child.words(clone));
+          result = result.concat(this.fetch(child));
         }
       }
-      return result;
+      return _.uniq(result);
     };
 
     return Trie;

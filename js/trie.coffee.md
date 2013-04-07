@@ -76,8 +76,10 @@ Groups letters, aggregates letters count.
           if groups[child.value] > 0
             clone = _.clone(groups)
             clone[child.value]--
-            _.union(result, child.words(clone))
-          else
-            # todo
 
-        return result
+Fixme. This code smells bad.
+
+            result = result.concat(child.words(clone))
+            result = result.concat(@fetch(child))
+
+        return _.uniq(result)

@@ -94,7 +94,6 @@
         trie.append('testers');
         node = trie.children[1].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0];
         words = trie.fetch(node);
-        console.log(words);
         chai.assert.equal(words.length, 3);
         chai.assert.include(words, 'test');
         chai.assert.include(words, 'testable');
@@ -129,7 +128,6 @@
         letters = ['t', 'e', 's', 't', 'a', 'b', 'l', 'e'];
         groups = trie.group(letters);
         words = trie.words(groups);
-        console.log(words);
         chai.assert.equal(words.length, 2);
         chai.assert.include(words, 'test');
         return chai.assert.include(words, 'testable');
