@@ -10,10 +10,6 @@
       this.children = [];
     }
 
-    Trie.prototype.isRoot = function() {
-      return this.parent != null;
-    };
-
     Trie.prototype.append = function(word) {
       var childTrie, tail;
       if (word.length === 0) {
@@ -34,13 +30,56 @@
       }
     };
 
-    Trie.prototype.words = function(letters) {
-      var result;
+    Trie.prototype.fetch = function(node) {
+      var lastNode, lastNodes, parent, result, word, _i, _len, _node;
       result = [];
-      if (!letters || letters.length === 0) {
-        return result;
+      lastNodes = [];
+      _node = node;
+      while (_node.parent) {
+        if (_node.last) {
+          lastNodes.push(_node);
+        }
+        _node = _node.parent;
       }
-      return [];
+      for (_i = 0, _len = lastNodes.length; _i < _len; _i++) {
+        lastNode = lastNodes[_i];
+        parent = lastNode.parent;
+        word = lastNode.value;
+        while (parent && parent.value) {
+          word = parent.value + word;
+          parent = parent.parent;
+        }
+        result.push(word);
+      }
+      return result;
+    };
+
+    Trie.prototype.group = function(letters) {
+      letters = _.sortBy(letters, function(letter) {
+        return letter;
+      });
+      return _.countBy(letters, function(letter) {
+        return letter;
+      });
+    };
+
+    Trie.prototype.words = function(groups) {
+      var child, clone, result, _i, _len, _ref;
+      result = [];
+      _ref = _.filter(this.children, function(child) {
+        return !child.stop;
+      });
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        child = _ref[_i];
+        if (groups[child.value] > 0) {
+          clone = _.clone(groups);
+          clone[child.value]--;
+          _.union(result, child.words(clone));
+        } else {
+
+        }
+      }
+      return result;
     };
 
     return Trie;

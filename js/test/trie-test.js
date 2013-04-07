@@ -27,18 +27,6 @@
         return chai.assert.isUndefined(trie.parent);
       });
     });
-    describe('#isRoot()', function() {
-      it('should be false if parent does not exists', function() {
-        var trie;
-        trie = new LetterpressCheat.Trie;
-        return chai.assert.isFalse(trie.isRoot());
-      });
-      return it('should be true if parent exists', function() {
-        var trie;
-        trie = new LetterpressCheat.Trie('', new Object);
-        return chai.assert.isTrue(trie.isRoot());
-      });
-    });
     describe('#append(word)', function() {
       it('should create a child trie with a first letter of word', function() {
         var trie, word;
@@ -95,34 +83,56 @@
         return chai.assert.isDefined(root.children[0].children[0].children[0].children[0].children[0].last);
       });
     });
-    return describe('#words(letters)', function() {
-      it('should return empty array if letters is undefined', function() {
-        var trie, words;
+    describe('#fetch(node)', function() {
+      return it('should fetch all words from given node', function() {
+        var node, trie, words;
         trie = new LetterpressCheat.Trie;
-        trie.append('abcde');
-        words = trie.words();
-        chai.assert.isArray(words);
-        return chai.assert.equal(words.length, 0);
-      });
-      it('should return empty array if letters is empty', function() {
-        var trie, words;
-        trie = new LetterpressCheat.Trie;
-        trie.append('abcde');
-        words = trie.words([]);
-        chai.assert.isArray(words);
-        return chai.assert.equal(words.length, 0);
-      });
-      return it('should return all the words', function() {
-        var letters, trie, words;
-        trie = new LetterpressCheat.Trie;
+        trie.append('detest');
         trie.append('test');
-        trie.append('forest');
-        trie.append('orest');
-        letters = ['t', 'e', 's', 't', 'o'];
-        words = trie.words(letters);
+        trie.append('testable');
+        trie.append('testables');
+        trie.append('testers');
+        node = trie.children[1].children[0].children[0].children[0].children[0].children[0].children[0].children[0].children[0];
+        words = trie.fetch(node);
+        console.log(words);
+        chai.assert.equal(words.length, 3);
         chai.assert.include(words, 'test');
-        chai.assert.include(words, 'orest');
-        return chai.expect(words).to.not.include('forest');
+        chai.assert.include(words, 'testable');
+        return chai.assert.include(words, 'testables');
+      });
+    });
+    describe('#group(letters)', function() {
+      return it('should group letters and aggregate count', function() {
+        var groups, letters, trie;
+        trie = new LetterpressCheat.Trie;
+        letters = ['t', 'e', 's', 't', 'a', 'b', 'l', 'e'];
+        groups = trie.group(letters);
+        return chai.assert.deepEqual(groups, {
+          a: 1,
+          b: 1,
+          e: 2,
+          l: 1,
+          s: 1,
+          t: 2
+        });
+      });
+    });
+    return describe('#words(groups)', function() {
+      return it('should return all the words', function() {
+        var groups, letters, trie, words;
+        trie = new LetterpressCheat.Trie;
+        trie.append('detest');
+        trie.append('test');
+        trie.append('testable');
+        trie.append('testables');
+        trie.append('testers');
+        letters = ['t', 'e', 's', 't', 'a', 'b', 'l', 'e'];
+        groups = trie.group(letters);
+        words = trie.words(groups);
+        console.log(words);
+        chai.assert.equal(words.length, 2);
+        chai.assert.include(words, 'test');
+        return chai.assert.include(words, 'testable');
       });
     });
   });
