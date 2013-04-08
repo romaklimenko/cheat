@@ -12,7 +12,8 @@
         word = words[_i];
         trie.append(word);
       }
-      return console.log(trie);
+      console.log(trie);
+      return window.trie = trie;
     });
   });
 
