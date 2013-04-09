@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "performance-test.js",
+  "sourceRoot": "",
+  "sources": [
+    "performance-test.coffee"
+  ],
+  "names": [],
+  "mappings": ";;AAAA;CAAA;CAAA,CAAA,CAA0B,EAA1B,IAA0B,SAA1B;CAAA"
+}

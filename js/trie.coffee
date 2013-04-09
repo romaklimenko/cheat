@@ -56,7 +56,7 @@ class Cheat.Trie
   # Groups letters, aggregates letters count.
   group: (letters) ->
 
-    letters = _.sortBy(letters, (letter) -> letter)
+    letters = letters.sort()
     return _.countBy(letters, (letter) -> letter)
 
   # words function takes grouped letters and returns matched words
@@ -71,6 +71,8 @@ class Cheat.Trie
 
         # FIXME: this code smells bad, but it works
         result = result.concat(child.words(clone))
+        console.log result
         result = result.concat(@fetch(child))
+        console.log result
 
     return _.uniq(result)

@@ -55,9 +55,7 @@
     };
 
     Trie.prototype.group = function(letters) {
-      letters = _.sortBy(letters, function(letter) {
-        return letter;
-      });
+      letters = letters.sort();
       return _.countBy(letters, function(letter) {
         return letter;
       });
@@ -75,7 +73,9 @@
           clone = _.clone(groups);
           clone[child.value]--;
           result = result.concat(child.words(clone));
+          console.log(result);
           result = result.concat(this.fetch(child));
+          console.log(result);
         }
       }
       return _.uniq(result);
