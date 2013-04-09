@@ -36,7 +36,7 @@
       var words;
       window.wordsViewModel.words.removeAll();
       words = window.trie.words(window.trie.group($('#letters-input').val()));
-      return window.wordsViewModel.words(_.shuffle(words).slice(0, 999));
+      return window.wordsViewModel.words(_.shuffle(words).slice(0, 99));
     });
   });
 

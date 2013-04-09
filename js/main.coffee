@@ -23,5 +23,5 @@ $ ->
     ->
       window.wordsViewModel.words.removeAll()
       words = window.trie.words(window.trie.group($('#letters-input').val()))
-      window.wordsViewModel.words(_.shuffle(words).slice(0,999))
+      window.wordsViewModel.words(_.shuffle(words).slice(0,99))
   )
