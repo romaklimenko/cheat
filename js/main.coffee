@@ -22,6 +22,6 @@ $ ->
   $('#letters-button').click(
     ->
       window.wordsViewModel.words.removeAll()
-      words = window.trie.words(window.trie.group($('#letters-input').val()))
+      words = window.trie.words(window.trie.group($('#letters-input').val().split('')))
       window.wordsViewModel.words(_.shuffle(words).slice(0,99))
   )
