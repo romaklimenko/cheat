@@ -7,8 +7,8 @@
       return it('should set value and parent', function() {
         var parent, trie, value;
         value = 'c';
-        parent = new LetterpressCheat.Trie('p');
-        trie = new LetterpressCheat.Trie(value, parent);
+        parent = new Cheat.Trie('p');
+        trie = new Cheat.Trie(value, parent);
         chai.assert.equal(trie.value, value);
         return chai.assert.equal(trie.parent, parent);
       });
@@ -16,14 +16,14 @@
     describe('#children', function() {
       return it('should be empty array when trie is just created', function() {
         var trie;
-        trie = new LetterpressCheat.Trie;
+        trie = new Cheat.Trie;
         return chai.assert.deepEqual(trie.children, []);
       });
     });
     describe('#parent', function() {
       return it('should be undefined when trie is just created', function() {
         var trie;
-        trie = new LetterpressCheat.Trie;
+        trie = new Cheat.Trie;
         return chai.assert.isUndefined(trie.parent);
       });
     });
@@ -31,7 +31,7 @@
       it('should create a child trie with a first letter of word', function() {
         var trie, word;
         word = 'unpredictabilities';
-        trie = new LetterpressCheat.Trie(word.charAt(0));
+        trie = new Cheat.Trie(word.charAt(0));
         trie.append(word.slice(1));
         return chai.assert.equal(trie.children.length, 1);
       });
@@ -39,7 +39,7 @@
         var first_word, n1, root, second_word, u0;
         first_word = 'unpredictabilities';
         second_word = 'underfulfilling';
-        root = new LetterpressCheat.Trie;
+        root = new Cheat.Trie;
         root.append(first_word);
         root.append(second_word);
         chai.assert.equal(root.children.length, 1);
@@ -55,7 +55,7 @@
       it("should set `last` if it's a last letter in the word", function() {
         var first_word, root;
         first_word = 'abc';
-        root = new LetterpressCheat.Trie;
+        root = new Cheat.Trie;
         root.append(first_word);
         chai.assert.equal(root.children[0].value, 'a');
         chai.assert.isUndefined(root.children[0].last);
@@ -68,7 +68,7 @@
         var first_word, root, second_word;
         first_word = 'abc';
         second_word = 'abcde';
-        root = new LetterpressCheat.Trie;
+        root = new Cheat.Trie;
         root.append(first_word);
         root.append(second_word);
         chai.assert.equal(root.children[0].value, 'a');
@@ -86,7 +86,7 @@
     describe('#fetch(node)', function() {
       return it('should fetch all words from given node', function() {
         var node, trie, words;
-        trie = new LetterpressCheat.Trie;
+        trie = new Cheat.Trie;
         trie.append('detest');
         trie.append('test');
         trie.append('testable');
@@ -103,7 +103,7 @@
     describe('#group(letters)', function() {
       return it('should group letters and aggregate count', function() {
         var groups, letters, trie;
-        trie = new LetterpressCheat.Trie;
+        trie = new Cheat.Trie;
         letters = ['t', 'e', 's', 't', 'a', 'b', 'l', 'e'];
         groups = trie.group(letters);
         return chai.assert.deepEqual(groups, {
@@ -119,7 +119,7 @@
     return describe('#words(groups)', function() {
       return it('should return all the words', function() {
         var groups, letters, trie, words;
-        trie = new LetterpressCheat.Trie;
+        trie = new Cheat.Trie;
         trie.append('detest');
         trie.append('test');
         trie.append('testable');

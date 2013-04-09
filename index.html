@@ -6,12 +6,33 @@
   <link href="./css/vendor/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container"></div>
+  <a href="https://github.com/romaklimenko/cheat">
+    <img style="position: absolute; top: 0; right: 0; border: 0;"
+    src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
+    alt="Fork me on GitHub">
+  </a>
+  <div class="container">
+    <fieldset>
+      <legend>Letterpress cheat</legend>
+      <label>Enter all letters from the grid</label>
+      <input id="letters-input" type="text" placeholder="Type some letters…" autocomplete="off" maxlength="25" disabled />
+    </fieldset>
+    <button id="letters-button" type="button" class="btn" disabled>Search</button>
+    <legend>Words: <span data-bind="text: words().length"></span></legend>
+    <ol data-bind="foreach: words">
+      <li>
+        <span data-bind="text: $data"></span>
+      </li>
+    </ol>
+  </div>
+  <div style="position:fixed; top:97%; left: 10px;">
+    <a href="./test.html" target="_blank">Mocha Tests</a>
+  </div>
   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="./js/vendor/underscore.js"></script>
   <script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js'></script>
   <script type="text/javascript">
-    window.LetterpressCheat = window.LetterpressCheat || {};
+    window.Cheat = window.Cheat || {};
   </script>
   <script src="./js/trie.js"></script>
   <script src="./js/main.js"></script>
@@ -26,7 +47,7 @@
       t.setAttribute('data-site-id', '4fa27221613f5d641e0000d0');
       t.src = '//secure.gaug.es/track.js';
       var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(t, s);
+      //s.parentNode.insertBefore(t, s);
     })();
   </script>
 </body>

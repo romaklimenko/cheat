@@ -3,17 +3,40 @@
 (function() {
 
   $(function() {
-    var response;
-    return response = $.get('./en.txt', function(data) {
-      var trie, word, words, _i, _len;
-      words = data.match(/[^\r\n]+/g);
-      trie = new LetterpressCheat.Trie;
-      for (_i = 0, _len = words.length; _i < _len; _i++) {
-        word = words[_i];
-        trie.append(word);
-      }
-      console.log(trie);
-      return window.trie = trie;
+    var WordsViewModel;
+    $.ajax({
+      url: './en.txt',
+      success: function(result) {
+        var trie, word, words, _i, _len;
+        words = result.match(/[^\r\n]+/g);
+        trie = new Cheat.Trie;
+        for (_i = 0, _len = words.length; _i < _len; _i++) {
+          word = words[_i];
+          trie.append(word);
+        }
+        console.log(trie);
+        window.trie = trie;
+        $('#letters-input').removeAttr('disabled');
+        return $('#letters-button').removeAttr('disabled');
+      },
+      async: false
+    });
+    WordsViewModel = (function() {
+
+      function WordsViewModel() {}
+
+      WordsViewModel.prototype.words = ko.observableArray([]);
+
+      return WordsViewModel;
+
+    })();
+    window.wordsViewModel = new WordsViewModel;
+    ko.applyBindings(window.wordsViewModel);
+    return $('#letters-button').click(function() {
+      var words;
+      window.wordsViewModel.words.removeAll();
+      words = window.trie.words(window.trie.group($('#letters-input').val()));
+      return window.wordsViewModel.words(_.shuffle(words).slice(0, 999));
     });
   });
 

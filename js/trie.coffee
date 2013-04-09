@@ -1,4 +1,4 @@
-class LetterpressCheat.Trie
+class Cheat.Trie
 
   constructor: (value, parent) ->
     @parent = parent
@@ -16,7 +16,7 @@ class LetterpressCheat.Trie
       (child) -> child.value is word.charAt(0))
 
     if childTrie is undefined
-      childTrie = new LetterpressCheat.Trie(word.charAt(0), this)
+      childTrie = new Cheat.Trie(word.charAt(0), this)
       @children.push(childTrie)
 
     tail = word.slice(1)

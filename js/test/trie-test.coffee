@@ -5,8 +5,8 @@ describe 'Trie', ->
     it 'should set value and parent', ->
 
       value = 'c'
-      parent = new LetterpressCheat.Trie('p')
-      trie = new LetterpressCheat.Trie(value, parent)
+      parent = new Cheat.Trie('p')
+      trie = new Cheat.Trie(value, parent)
       chai.assert.equal(trie.value, value)
       chai.assert.equal(trie.parent, parent)
 
@@ -14,14 +14,14 @@ describe 'Trie', ->
 
     it 'should be empty array when trie is just created', ->
 
-      trie = new LetterpressCheat.Trie
+      trie = new Cheat.Trie
       chai.assert.deepEqual(trie.children, [])
 
   describe '#parent', ->
 
     it 'should be undefined when trie is just created', ->
 
-      trie = new LetterpressCheat.Trie
+      trie = new Cheat.Trie
       chai.assert.isUndefined(trie.parent)
 
   describe '#append(word)', ->
@@ -29,7 +29,7 @@ describe 'Trie', ->
     it 'should create a child trie with a first letter of word', ->
 
       word = 'unpredictabilities'
-      trie = new LetterpressCheat.Trie(word.charAt(0))
+      trie = new Cheat.Trie(word.charAt(0))
       trie.append(word.slice(1))
       chai.assert.equal(trie.children.length, 1)
 
@@ -38,7 +38,7 @@ describe 'Trie', ->
       first_word = 'unpredictabilities'
       second_word = 'underfulfilling'
 
-      root = new LetterpressCheat.Trie
+      root = new Cheat.Trie
       root.append(first_word)
       root.append(second_word)
 
@@ -59,7 +59,7 @@ describe 'Trie', ->
     it "should set `last` if it's a last letter in the word", ->
       first_word = 'abc'
 
-      root = new LetterpressCheat.Trie
+      root = new Cheat.Trie
       root.append(first_word)
 
       # _a_bc
@@ -83,7 +83,7 @@ describe 'Trie', ->
       first_word = 'abc'
       second_word = 'abcde'
 
-      root = new LetterpressCheat.Trie
+      root = new Cheat.Trie
       root.append(first_word)
       root.append(second_word)
 
@@ -140,7 +140,7 @@ describe 'Trie', ->
 
     it 'should fetch all words from given node', ->
 
-      trie = new LetterpressCheat.Trie
+      trie = new Cheat.Trie
       trie.append('detest')
       trie.append('test')
       trie.append('testable')
@@ -169,7 +169,7 @@ describe 'Trie', ->
 
     it 'should group letters and aggregate count', ->
 
-      trie = new LetterpressCheat.Trie
+      trie = new Cheat.Trie
       letters = ['t', 'e', 's', 't', 'a', 'b', 'l', 'e']
       groups = trie.group(letters)
       chai.assert.deepEqual(
@@ -180,7 +180,7 @@ describe 'Trie', ->
 
     it 'should return all the words', ->
 
-      trie = new LetterpressCheat.Trie
+      trie = new Cheat.Trie
       trie.append('detest')
       trie.append('test')
       trie.append('testable')
