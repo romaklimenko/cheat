@@ -32,7 +32,8 @@
   <script type="text/javascript">
     var _gauges = _gauges || [];
     (function() {
-      if (window.location.origin === 'file://') { return; };
+      if (window.location.origin === 'file://'
+        || window.location.hostname === 'localhost') { return; };
       var t   = document.createElement('script');
       t.type  = 'text/javascript';
       t.async = true;
