@@ -42,14 +42,15 @@
     });
     return suite('Array', function() {
       return test("find all words in array by ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']", function() {
-        var letters, result, word, _i, _len;
+        var letters, result, word, _i, _len, _results;
         letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
         result = [];
+        _results = [];
         for (_i = 0, _len = words.length; _i < _len; _i++) {
           word = words[_i];
-          result.push(word.split('').sort());
+          _results.push(result.push(word.split('').sort()));
         }
-        return console.log(result);
+        return _results;
       });
     });
   });

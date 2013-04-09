@@ -61,18 +61,14 @@ class Cheat.Trie
 
   # words function takes grouped letters and returns matched words
   words: (groups) ->
-
     result = []
 
-    for child in _.filter(@children, (child) -> not child.stop)
+    for child in @children
       if groups[child.value] > 0
         clone = _.clone(groups)
         clone[child.value]--
-
-        # FIXME: this code smells bad, but it works
         result = result.concat(child.words(clone))
-        console.log result
-        result = result.concat(@fetch(child))
-        console.log result
-
+      else if groups[child.value] is 0
+        result = result.concat(@fetch(this))
+    # fixme: smells bad
     return _.uniq(result)

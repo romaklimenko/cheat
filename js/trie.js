@@ -64,18 +64,15 @@
     Trie.prototype.words = function(groups) {
       var child, clone, result, _i, _len, _ref;
       result = [];
-      _ref = _.filter(this.children, function(child) {
-        return !child.stop;
-      });
+      _ref = this.children;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         child = _ref[_i];
         if (groups[child.value] > 0) {
           clone = _.clone(groups);
           clone[child.value]--;
           result = result.concat(child.words(clone));
-          console.log(result);
-          result = result.concat(this.fetch(child));
-          console.log(result);
+        } else if (groups[child.value] === 0) {
+          result = result.concat(this.fetch(this));
         }
       }
       return _.uniq(result);
