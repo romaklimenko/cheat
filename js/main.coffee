@@ -39,7 +39,7 @@ require(
     $('#input-letters').keyup( (event) ->
       if (/[a-zA-Z]/.test(String.fromCharCode(event.keyCode)))
         $('#input-letters').val($('#input-letters').val().toLowerCase())
-        viewModel.find($('#input-letters').val())
+      viewModel.find($('#input-letters').val())
     )
 
     ko.applyBindings viewModel

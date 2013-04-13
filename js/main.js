@@ -29,8 +29,8 @@
     $('#input-letters').keyup(function(event) {
       if (/[a-zA-Z]/.test(String.fromCharCode(event.keyCode))) {
         $('#input-letters').val($('#input-letters').val().toLowerCase());
-        return viewModel.find($('#input-letters').val());
       }
+      return viewModel.find($('#input-letters').val());
     });
     ko.applyBindings(viewModel);
     return $('#input-letters').focus();
