@@ -19,7 +19,8 @@ requirejs.config({
     underscore: {
       exports: '_'
     }
-  }
+  },
+  waitSeconds: 600
 })
 
 require(

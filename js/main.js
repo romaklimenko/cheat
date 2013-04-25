@@ -20,7 +20,8 @@
       underscore: {
         exports: '_'
       }
-    }
+    },
+    waitSeconds: 600
   });
 
   require(['jquery', 'underscore', 'bootstrap', 'knockout', 'view-model', 'domReady!'], function($, _, Bootstrap, ko, ViewModel, doc) {
