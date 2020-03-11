@@ -1,118 +1,110 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Letterpress Cheat</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<head>
+  <title>Timeline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127737961-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'UA-127737961-1');
   </script>
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript" >
-     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-     m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-     ym(39566950, "init", {
-          id:39566950,
-          clickmap:true,
-          trackLinks:true,
-          accurateTrackBounce:true
-     });
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/39566950" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
-
-  <link href="./css/vendor/bootstrap.css" rel="stylesheet">
-  <link href="./css/vendor/bootstrap-responsive.css" rel="stylesheet">
-  <link href="./css/main.css" rel="stylesheet">
+  <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://romaklimenko.github.io/css/main.css">
 </head>
+
 <body>
-
-  <a href="https://github.com/romaklimenko/cheat" class="hidden-phone">
-    <img style="position: absolute; top: 0; right: 0; border: 0;"
-    src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
-    alt="Fork me on GitHub">
-  </a>
-
-  <div class="container-fluid">
-    <div class="navbar">
-      <div class="navbar-inner">
-        <a class="brand" href="/">Letterpress cheat</a>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p style="padding-top:15px; font-size:120%;">
+          <a class="hl-black" style="background-color: #007BFF;padding:2px;" href="/">Roman Klimenko</a>
+          <a class="hl-black" style="background-color: #D50000;;padding:2px;" href="/cheat">Letterpress</a>
+        </p>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
 
-    <div class="alert alert-warn" data-bind="visible: total == ''">
-      Loading dictionary (~2.8 Mb)
-    </div>
+          <div class="alert alert-warning" data-bind="visible: total == ''">
+            Loading dictionary (~2.8 Mb)
+          </div>
 
-    <div
-      class="alert alert-info"
-      style="display: none;"
-      data-bind="visible: total != ''">
-      <span data-bind="text: total"></span>
-      words in the dictionary
-      <a href="https://github.com/atebits/Words" target="_blank">
-        <sup>see more</sup>
-      </a>
-    </div>
+          <div
+            class="alert alert-primary"
+            style="display: none;"
+            data-bind="visible: total != ''">
+            <span data-bind="text: total"></span>
+            words in the dictionary
+            <a href="https://github.com/atebits/Words" target="_blank">
+              <sup>see more</sup>
+            </a>
+          </div>
 
-    <div
-      class="control-group"
-      style="display: none;"
-      data-bind="visible: total != ''">
-      <label class="control-label" for="input-letters">Letters</label>
-      <div class="controls">
-        <input
-          id="input-letters"
-          type="text"
-          autocapitalize="off"
-          autocorrect="off"
-          placeholder="Type all letters from the grid..."
-          class="span4">
+          <div
+            class="control-group"
+            style="display: none;"
+            data-bind="visible: total != ''">
+            <div class="form-group">
+              <label for="input-letters">Letters:</label>
+              <input
+                id="input-letters"
+                type="text"
+                autocapitalize="off"
+                autocorrect="off"
+                placeholder="Type all letters from the grid..."
+                class="form-control">
+              <small class="form-text text-muted">Enter the letters you want to use.</small>
+            </div>
+            <div class="form-group">
+              <label for="input-required-letters">Required letters:</label>
+              <input
+                id="input-required-letters"
+                data-bind="value: requiredLetters, valueUpdate: 'afterkeyup'"
+                type="text"
+                autocapitalize="off"
+                autocorrect="off"
+                placeholder="Type required letters..."
+                class="form-control">
+              <small class="form-text text-muted">Enter the letters that must be in the results.</small>
+            </div>
+          </div>
+
+          <div
+            class="alert alert-primary"
+            style="display: none;"
+            data-bind="visible: total != ''">
+            <span data-bind="text: found"></span> words found.
+          </div>
+
+          <p data-bind="text: wordsString"></p>
+
+
+
+
+        <div style="position:fixed; top:97%; left: 10px;">
+          <a href="./test.html" target="_blank">Tests</a>
+        </div>
+        <script src="./js/require.js"></script>
+        <script type="text/javascript">
+          if (location.hostname === 'cheat.dev'
+            || window.location.origin === 'file://') {
+            require({baseUrl:'./js'},['main'],function(){});
+          }
+          else {
+            require({baseUrl:'./min/js'},['main'],function(){});
+          }
+        </script>
       </div>
-      <label
-        class="control-label"
-        for="input-search">Required letters</label>
-      <div class="controls">
-        <input
-          id="input-required-letters"
-          data-bind="value: requiredLetters, valueUpdate: 'afterkeyup'"
-          type="text"
-          autocapitalize="off"
-          autocorrect="off"
-          placeholder="Type required letters..."
-          class="span4">
-      </div>
     </div>
-
-    <div
-      class="alert alert-info"
-      style="display: none;"
-      data-bind="visible: total != ''">
-      <span data-bind="text: found"></span> words found.
-    </div>
-
-    <p data-bind="text: wordsString"></p>
   </div>
-  <div style="position:fixed; top:97%; left: 10px;">
-    <a href="./test.html" target="_blank">Tests</a>
-  </div>
-  <script src="./js/require.js"></script>
-  <script type="text/javascript">
-    if (location.hostname === 'cheat.dev'
-      || window.location.origin === 'file://') {
-      require({baseUrl:'./js'},['main'],function(){});
-    }
-    else {
-      require({baseUrl:'./min/js'},['main'],function(){});
-    }
-  </script>
+
 </body>
+
 </html>
