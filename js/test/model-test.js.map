@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "model-test.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "js/test/model-test.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,MAAA,CACE,CACE,MADF,EAEE,8BAFF,EAGE,OAHF,CADF,EAME,QAAA,CAAC,IAAD,EAAO,IAAP,EAAa,KAAb,CAAA;AACF,QAAA,MAAA,EAAA;IAAI,MAAA,GAAS,IAAI,CAAC;IACd,MAAA,GAAS,IAAI,CAAC;WAEd,QAAA,CAAS,OAAT,EAAkB,QAAA,CAAA,CAAA;MAEhB,QAAA,CAAS,gBAAT,EAA2B,QAAA,CAAA,CAAA;eAEzB,EAAA,CAAG,8CAAH,EAAmD,QAAA,CAAA,CAAA;AAE3D,cAAA,OAAA,EAAA;UAAU,OAAA,GAAU;UAEV,KAAA,GAAQ,KAAK,CAAC,IAAN,CAAW,OAAX;iBAER,MAAM,CAAC,KAAP,CAAa,KAAK,CAAC,MAAnB,EAA2B,KAA3B;QANiD,CAAnD;MAFyB,CAA3B;MAUA,QAAA,CAAS,sBAAT,EAAiC,QAAA,CAAA,CAAA;QAE/B,EAAA,CAAG,0EAAH,EAA+E,QAAA,CAAA,CAAA;AAEvF,cAAA,OAAA,EAAA;UAAU,OAAA,GAAU;UACV,IAAA,GAAO;UAEP,IAAA,GAAO,KAAK,CAAC,IAAN,CAAW,IAAX,EAAiB,OAAjB;iBAEP,MAAM,CAAC,MAAP,CAAc,IAAd;QAP6E,CAA/E;eASA,EAAA,CAAG,+EAAH,EAAoF,QAAA,CAAA,CAAA;AAE5F,cAAA,OAAA,EAAA;UAAU,OAAA,GAAU;UACV,IAAA,GAAO;UAEP,IAAA,GAAO,KAAK,CAAC,IAAN,CAAW,IAAX,EAAiB,OAAjB;iBAEP,MAAM,CAAC,OAAP,CAAe,IAAf;QAPkF,CAApF;MAX+B,CAAjC;aAoBA,QAAA,CAAS,UAAT,EAAqB,QAAA,CAAA,CAAA;QAEnB,EAAA,CAAG,iCAAH,EAAsC,QAAA,CAAA,CAAA;iBACpC,MAAM,CAAC,OAAP,CAAe,KAAK,CAAC,KAAN,CAAA,CAAf;QADoC,CAAtC;eAGA,EAAA,CAAG,8BAAH,EAAmC,QAAA,CAAA,CAAA;iBACjC,MAAM,CAAC,MAAP,CAAc,KAAK,CAAC,KAAN,CAAA,CAAa,CAAC,MAAd,IAAwB,MAAtC;QADiC,CAAnC;MALmB,CAArB;IAhCgB,CAAlB;EAJF,CANF;AAAA",
+  "sourcesContent": [
+    "define(\r\n  [\r\n    'main',\r\n    '../node_modules/chai/chai.js',\r\n    'model'\r\n  ],\r\n  (Main, Chai, Model) ->\r\n    assert = Chai.assert\r\n    expect = Chai.expect\r\n\r\n    describe \"Model\", ->\r\n\r\n      describe '@find(letters)', ->\r\n\r\n        it 'find all words by abcdefghijklmnopqrstuvwxyz', ->\r\n\r\n          letters = 'abcdefghijklmnopqrstuvwxyz'\r\n\r\n          words = Model.find(letters)\r\n\r\n          assert.equal(words.length, 50902)\r\n\r\n      describe '@word(word, letters)', ->\r\n\r\n        it \"should return true if it's possible to compose a word from given letters\", ->\r\n\r\n          letters = 'aesttz'\r\n          word = 'test'\r\n\r\n          word = Model.word(word, letters)\r\n\r\n          assert.isTrue(word)\r\n\r\n        it \"should return false if it isn't possible to compose a word from given letters\", ->\r\n\r\n          letters = 'aestz'\r\n          word = 'test'\r\n\r\n          word = Model.word(word, letters)\r\n\r\n          assert.isFalse(word)\r\n\r\n      describe \"@words()\", ->\r\n\r\n        it \"should return an array of words\", ->\r\n          assert.isArray(Model.words())\r\n\r\n        it \"should return a lot of words\", ->\r\n          assert.isTrue(Model.words().length >= 274892)\r\n)"
+  ]
+}

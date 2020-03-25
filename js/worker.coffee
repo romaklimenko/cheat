@@ -20,5 +20,5 @@ require({
         words: Model.find(letters)
       }
 
-      postMessage(result)
+      postMessage(result)
 )

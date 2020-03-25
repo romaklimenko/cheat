@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "main.js",
+  "sourceRoot": "..",
+  "sources": [
+    "js/main.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,SAAS,CAAC,MAAV,CAAiB;IACf,KAAA,EAAO,CAAA;;MAEL,WAAA,EAAa,kBAFR;MAGL,QAAA,EAAU,eAHL;MAIL,UAAA,EAAY,iBAJP;MAKL,YAAA,EAAc,mBALT;MAML,QAAA,EAAU,eANL;;MAQL,UAAA,EAAY,iBARP;MASL,MAAA,EAAQ,aATH;;MAWL,OAAA,EAAS,OAXJ;MAYL,WAAA,EAAa;IAZR,CADQ;IAef,IAAA,EAAM;MACJ,SAAA,EAAW;QACT,IAAA,EAAM,CAAC,QAAD;MADG,CADP;MAIJ,MAAA,EAAQ;QACN,OAAA,EAAS;MADH,CAJJ;MAOJ,UAAA,EAAY;QACV,OAAA,EAAS;MADC;IAPR,CAfS;IA0Bf,WAAA,EAAa;EA1BE,CAAjB;;EA6BA,OAAA,CACE,CACE,QADF,EAEE,YAFF,EAGE,WAHF,EAIE,UAJF,EAKE,YALF,EAME,WANF,EAOE,QAPF,CADF,EAUE,QAAA,CAAC,CAAD,EAAI,CAAJ,EAAO,SAAP,EAAkB,EAAlB,EAAsB,SAAtB,EAAiC,GAAjC,EAAsC,MAAtC,CAAA;AACF,QAAA,MAAA,EAAA,SAAA;;IAEI,MAAM,CAAC,MAAP,GAAgB;IAEhB,MAAA,GAAS,QAAQ,CAAC,aAAT,CAAuB,QAAvB;IACT,MAAM,CAAC,GAAP,GAAa;IACb,QAAQ,CAAC,IAAI,CAAC,WAAd,CAA0B,MAA1B;IAEA,SAAA,GAAY,IAAI,SAAJ,CAAA;IAEZ,CAAA,CAAE,gBAAF,CAAmB,CAAC,KAApB,CAA2B,QAAA,CAAC,KAAD,CAAA;MACzB,IAAI,UAAU,CAAC,IAAX,CAAgB,MAAM,CAAC,YAAP,CAAoB,KAAK,CAAC,OAA1B,CAAhB,CAAJ;QACE,CAAA,CAAE,gBAAF,CAAmB,CAAC,GAApB,CAAwB,CAAA,CAAE,gBAAF,CAAmB,CAAC,GAApB,CAAA,CAAyB,CAAC,WAA1B,CAAA,CAAxB,EADF;;aAEA,SAAS,CAAC,IAAV,CAAe,CAAA,CAAE,gBAAF,CAAmB,CAAC,GAApB,CAAA,CAAf;IAHyB,CAA3B;IAMA,EAAE,CAAC,aAAH,CAAiB,SAAjB;WAEA,CAAA,CAAE,gBAAF,CAAmB,CAAC,KAApB,CAAA;EAnBF,CAVF;AA7BA",
+  "sourcesContent": [
+    "requirejs.config({\n  paths: {\n    # libs\n    'bootstrap': 'vendor/bootstrap',\n    'jquery': 'vendor/jquery',\n    'knockout': 'vendor/knockout',\n    'underscore': 'vendor/underscore',\n    'uuidv4': 'vendor/uuidv4',\n    # requirejs plugins\n    'domReady': 'vendor/domReady',\n    'text': 'vendor/text'\n    # own modules\n    'Model': 'model',\n    'ViewModel': 'view-model'\n  },\n  shim: {\n    bootstrap: {\n      deps: ['jquery']\n    },\n    uuidv4: {\n      exports: 'uuidv4'\n    }\n    underscore: {\n      exports: '_'\n    }\n  },\n  waitSeconds: 600\n})\n\nrequire(\n  [\n    'jquery',\n    'underscore',\n    'bootstrap',\n    'knockout',\n    'view-model',\n    'domReady!',\n    'uuidv4'\n  ],\n  ($, _, Bootstrap, ko, ViewModel, doc, uuidv4) ->\n    # console.log Model.words().length\n\n    window.uuidv4 = uuidv4\n\n    script = document.createElement 'script'\n    script.src = \"https://romaklimenko.github.io/js/keepalive.js\"\n    document.head.appendChild script\n\n    viewModel = new ViewModel\n\n    $('#input-letters').keyup( (event) ->\n      if (/[a-zA-Z]/.test(String.fromCharCode(event.keyCode)))\n        $('#input-letters').val($('#input-letters').val().toLowerCase())\n      viewModel.find($('#input-letters').val())\n    )\n\n    ko.applyBindings viewModel\n\n    $('#input-letters').focus()\n)"
+  ]
+}

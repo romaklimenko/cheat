@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "view-model.js",
+  "sourceRoot": "..",
+  "sources": [
+    "js/view-model.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,MAAA,CAAO,CAAC,YAAD,EAAe,UAAf,CAAP,EAAmC,QAAA,CAAC,CAAD,EAAI,EAAJ,CAAA;AAEnC,QAAA;IAAU;;;MAAN,MAAA,UAAA;QAIE,WAAa,CAAA,CAAA;AAEnB,cAAA;UAAQ,IAAA,GAAO;UAEP,IAAC,CAAA,MAAD,GAAU,IAAI,MAAJ,CAAW,gBAAX;UAEV,IAAC,CAAA,MAAM,CAAC,SAAR,GAAoB,QAAA,CAAC,KAAD,CAAA;YAClB,IAAI,CAAC,KAAL,CAAW,KAAK,CAAC,IAAI,CAAC,KAAtB;YACA,IAAI,CAAC,KAAL,CAAW,KAAK,CAAC,IAAI,CAAC,KAAK,CAAC,MAA5B;mBACA,IAAI,CAAC,KAAL,CAAW,KAAK,CAAC,IAAI,CAAC,KAAtB;UAHkB;UAKpB,IAAC,CAAA,OAAD,GAAW,EAAE,CAAC,QAAH,CACT,QAAA,CAAA,CAAA;AAAG,mBAAO,IAAI,CAAC,KAAL,KAAc;UAAxB,CADS;UAIX,IAAC,CAAA,WAAD,GAAe,EAAE,CAAC,QAAH,CACb,QAAA,CAAA,CAAA;AACE,mBAAO,SAAS,CAAC,MAAV,CACL,IAAI,CAAC,KAAL,CAAA,CADK,EAEL,IAAI,CAAC,eAAL,CAAA,CAFK,CAGN,CAAC,IAHK,CAGA,IAHA;UADT,CADa,EAMb,IANa;QAfJ;;QA6BJ,OAAR,MAAQ,CAAC,KAAD,EAAQ,OAAR,CAAA;UACP,IAAgB,OAAA,KAAW,EAA3B;AAAA,mBAAO,MAAP;;AAEA,iBAAO,CAAC,CAAC,MAAF,CACL,KADK,EAEL,QAAA,CAAC,IAAD,CAAA;AACV,gBAAA,YAAA,EAAA;YAAY,IAAA,GAAO,CAAC,CAAC,IAAF,CAAO,OAAP;YACP,YAAA,GAAe,CAAC,CAAC,YAAF,CAAe,IAAf,EAAqB,IAArB;AACf,mBAAO,YAAY,CAAC,MAAb,KAAuB,IAAI,CAAC;UAHrC,CAFK;QAHA;;QAUT,IAAM,CAAC,OAAD,CAAA;iBACJ,IAAC,CAAA,MAAM,CAAC,WAAR,CAAoB,OAApB;QADI;;MA3CR;;MAEE,MAAA,GAAS;;0BA0BT,KAAA,GAAO,EAAE,CAAC,UAAH,CAAc,EAAd;;0BACP,eAAA,GAAiB,EAAE,CAAC,UAAH,CAAc,EAAd;;0BACjB,KAAA,GAAO,EAAE,CAAC,UAAH,CAAc,CAAd;;0BACP,KAAA,GAAO,EAAE,CAAC,eAAH,CAAmB,EAAnB;;;;;AAeT,WAAO;EAhDwB,CAAnC;AAAA",
+  "sourcesContent": [
+    "define(['underscore', 'knockout'], (_, ko) ->\n\n    class ViewModel\n\n      worker = undefined\n\n      constructor: ->\n\n        self = this\n\n        @worker = new Worker('./js/worker.js')\n\n        @worker.onmessage = (event) ->\n          self.total(event.data.total)\n          self.found(event.data.words.length)\n          self.words(event.data.words)\n\n        @loading = ko.computed(\n          -> return self.total is ''\n        )\n\n        @wordsString = ko.computed(\n          ->\n            return ViewModel.filter(\n              self.words(),\n              self.requiredLetters()\n            ).join(', ')\n          self\n        )\n\n      total: ko.observable('')\n      requiredLetters: ko.observable('')\n      found: ko.observable(0)\n      words: ko.observableArray([])\n\n      @filter: (words, letters) ->\n        return words if letters is ''\n\n        return _.filter(\n          words,\n          (word) ->\n            uniq = _.uniq(letters)\n            intersection = _.intersection(word, uniq)\n            return intersection.length == uniq.length)\n\n      find: (letters) ->\n        @worker.postMessage(letters)\n\n    return ViewModel)"
+  ]
+}

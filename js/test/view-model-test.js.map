@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "view-model-test.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "js/test/view-model-test.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,MAAA,CACE,CACE,MADF,EAEE,8BAFF,EAGE,YAHF,CADF,EAME,QAAA,CAAC,IAAD,EAAO,IAAP,EAAa,SAAb,CAAA;AACF,QAAA,MAAA,EAAA;IAAI,MAAA,GAAS,IAAI,CAAC;IACd,MAAA,GAAS,IAAI,CAAC;WAEd,QAAA,CAAS,WAAT,EAAsB,QAAA,CAAA,CAAA;MAEpB,QAAA,CAAS,cAAT,EAAyB,QAAA,CAAA,CAAA,EAAA,CAAzB,EAAN;;MAIM,QAAA,CAAS,gBAAT,EAA2B,QAAA,CAAA,CAAA,EAAA,CAA3B,EAJN;;aAQM,QAAA,CAAS,yBAAT,EAAoC,QAAA,CAAA,CAAA;eAElC,EAAA,CAAG,yCAAH,EAA8C,QAAA,CAAA,CAAA;AAEtD,cAAA,OAAA,EAAA,MAAA,EAAA;UAAU,KAAA,GAAQ,CAAC,KAAD,EAAQ,KAAR,EAAe,KAAf,EAAsB,KAAtB;UACR,OAAA,GAAU;UACV,MAAA,GAAS,SAAS,CAAC,MAAV,CAAiB,KAAjB,EAAwB,OAAxB;UAET,MAAM,CAAC,KAAP,CAAa,MAAM,CAAC,MAApB,EAA4B,CAA5B,EAA+B,MAA/B;UACA,MAAM,CAAC,OAAP,CAAe,MAAf,EAAuB,KAAvB;iBACA,MAAM,CAAC,OAAP,CAAe,MAAf,EAAuB,KAAvB;QAR4C,CAA9C;MAFkC,CAApC;IAVoB,CAAtB;EAJF,CANF;AAAA",
+  "sourcesContent": [
+    "define(\n  [\n    'main',\n    '../node_modules/chai/chai.js',\n    'view-model'\n  ],\n  (Main, Chai, ViewModel) ->\n    assert = Chai.assert\n    expect = Chai.expect\n\n    describe 'ViewModel', ->\n\n      describe '#constructor', ->\n\n        # todo\n\n      describe '#find(letters)', ->\n\n        # todo\n\n      describe '#filter(words, letters)', ->\n\n        it 'should filter array by required letters', ->\n\n          words = ['abc', 'bcd', 'cde', 'def']\n          letters = 'bc'\n          result = ViewModel.filter(words, letters)\n\n          assert.equal(result.length, 2, result)\n          assert.include(result, 'abc')\n          assert.include(result, 'bcd')\n)"
+  ]
+}

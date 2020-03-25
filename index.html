@@ -93,19 +93,11 @@
         </div>
         <script src="./js/require.js"></script>
         <script type="text/javascript">
-          if (location.hostname === 'cheat.dev'
-            || window.location.origin === 'file://') {
-            require({baseUrl:'./js'},['main'],function(){});
-          }
-          else {
-            require({baseUrl:'./min/js'},['main'],function(){});
-          }
+          require({baseUrl:'./js'},['main'],function(){});
         </script>
       </div>
     </div>
   </div>
-  <script src="/js/uuidv4.min.js"></script>
-  <script src="/js/keepalive.js"></script>
 </body>
 
 </html>

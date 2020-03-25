@@ -5,6 +5,7 @@ requirejs.config({
     'jquery': 'vendor/jquery',
     'knockout': 'vendor/knockout',
     'underscore': 'vendor/underscore',
+    'uuidv4': 'vendor/uuidv4',
     # requirejs plugins
     'domReady': 'vendor/domReady',
     'text': 'vendor/text'
@@ -16,6 +17,9 @@ requirejs.config({
     bootstrap: {
       deps: ['jquery']
     },
+    uuidv4: {
+      exports: 'uuidv4'
+    }
     underscore: {
       exports: '_'
     }
@@ -30,10 +34,17 @@ require(
     'bootstrap',
     'knockout',
     'view-model',
-    'domReady!'
+    'domReady!',
+    'uuidv4'
   ],
-  ($, _, Bootstrap, ko, ViewModel, doc) ->
-    #console.log Model.words().length
+  ($, _, Bootstrap, ko, ViewModel, doc, uuidv4) ->
+    # console.log Model.words().length
+
+    window.uuidv4 = uuidv4
+
+    script = document.createElement 'script'
+    script.src = "https://romaklimenko.github.io/js/keepalive.js"
+    document.head.appendChild script
 
     viewModel = new ViewModel
 

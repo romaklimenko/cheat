@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "worker.js",
+  "sourceRoot": "..",
+  "sources": [
+    "js/worker.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,aAAA,CAAc,YAAd;;EAEA,OAAA,CAAQ;IACJ,OAAA,EAAS;EADL,CAAR,EAGE,CAAC,SAAD,EAAY,OAAZ,CAHF,EAIE,QAAA,CAAC,OAAD,EAAU,KAAV,CAAA;AACF,QAAA;IAAI,MAAA,GAAS;MACP,KAAA,EAAO,KAAK,CAAC,KAAN,CAAA,CAAa,CAAC,MADd;MAEP,KAAA,EAAO;IAFA;IAKT,WAAA,CAAY,MAAZ;WAEA,IAAC,CAAA,SAAD,GAAa,QAAA,CAAC,MAAD,CAAA;AACjB,UAAA;MAAM,OAAA,GAAU,MAAM,CAAC;MAEjB,MAAA,GAAS;QACP,KAAA,EAAO,KAAK,CAAC,KAAN,CAAA,CAAa,CAAC,MADd;QAEP,KAAA,EAAO,KAAK,CAAC,IAAN,CAAW,OAAX;MAFA;aAKT,WAAA,CAAY,MAAZ;IARW;EARf,CAJF;AAFA",
+  "sourcesContent": [
+    "importScripts('require.js')\n\nrequire({\n    baseUrl: './'\n  },\n  ['require', 'model'],\n  (require, Model) ->\n    result = {\n      total: Model.words().length\n      words: []\n    }\n\n    postMessage(result)\n\n    @onmessage = (oEvent) ->\n      letters = oEvent.data\n\n      result = {\n        total: Model.words().length\n        words: Model.find(letters)\n      }\n\n      postMessage(result)\n)"
+  ]
+}

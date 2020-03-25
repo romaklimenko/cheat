@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "model.js",
+  "sourceRoot": "..",
+  "sources": [
+    "js/model.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,MAAA,CAAO,CAAC,uBAAD,CAAP,EAAkC,QAAA,CAAC,EAAD,CAAA;AAElC,QAAA;IAAU,QAAN,MAAA,MAAA;MAES,OAAN,IAAM,CAAC,OAAD,CAAA;AACb,YAAA,KAAA,EAAA,CAAA,EAAA,GAAA,EAAA,MAAA,EAAA;QAAQ,MAAA,GAAS;QACT,KAAA,GAAQ,KAAK,CAAC,KAAN,CAAA;QACR,KAAA,uCAAA;;UACE,IAAG,KAAK,CAAC,IAAN,CAAW,KAAX,EAAkB,OAAlB,CAAH;YACE,MAAM,CAAC,IAAP,CAAY,KAAZ,EADF;;QADF;AAGA,eAAO;MANF;;MAQA,OAAN,IAAM,CAAC,IAAD,EAAO,OAAP,CAAA;AACb,YAAA,CAAA,EAAA,GAAA,EAAA;QAAQ,KAAA,sCAAA;;UACE,IAAgB,CAAI,CAAC,CAAL,GAAS,OAAO,CAAC,OAAR,CAAgB,MAAhB,CAAzB;AAAA,mBAAO,MAAP;;UACA,OAAA,GAAU,OAAO,CAAC,OAAR,CAAgB,MAAhB,EAAwB,EAAxB;QAFZ;AAIA,eAAO;MALF;;MAOC,OAAP,KAAO,CAAA,CAAA;AACN,eAAO,EAAE,CAAC,KAAH,CAAS,WAAT;MADD;;IAjBV;AAoBA,WAAO;EAtBuB,CAAlC;AAAA",
+  "sourcesContent": [
+    "define(['vendor/text!../en.txt'], (en) ->\r\n\r\n    class Model\r\n\r\n      @find: (letters) ->\r\n        result = []\r\n        words = Model.words()\r\n        for _word in words\r\n          if Model.word(_word, letters)\r\n            result.push _word\r\n        return result\r\n\r\n      @word: (word, letters) ->\r\n        for letter in word\r\n          return false if not -1 > letters.indexOf(letter)\r\n          letters = letters.replace(letter, '')\r\n\r\n        return true\r\n\r\n      @words: ->\r\n        return en.match(/[^\\r\\n]+/g)\r\n\r\n    return Model)"
+  ]
+}
