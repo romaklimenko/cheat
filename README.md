@@ -33,7 +33,7 @@ npm run preview  # serve the production build locally
 
 ## Deploy
 
-Pushing to `gh-pages` triggers `.github/workflows/deploy.yml`, which runs the tests,
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs the tests,
 builds the site, and publishes `dist/` to GitHub Pages. The custom domain is
 configured through `public/CNAME`.
 
