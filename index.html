@@ -1,103 +1,66 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Letterpress Cheat</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127737961-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-127737961-1');
-  </script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <p style="padding-top:15px; font-size:120%;">
-          <a class="hl-black" style="color: #fff; background-color: #007BFF;padding:3px;" href="/">RK</a>
-          <a class="hl-black" style="color: #fff; background-color: #D50000;;padding:3px;" href="/cheat">Letterpress</a>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Find every word you can spell from a set of letters — a helper for the Letterpress word game."
+    />
+    <title>Letterpress Cheat</title>
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <h1>Letterpress Cheat</h1>
+        <p class="app__subtitle">
+          Type the letters from the board and find every word you can spell.
         </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
+      </header>
 
-          <div class="alert alert-warning" data-bind="visible: total == ''">
-            Loading dictionary (~2.8 Mb)
-          </div>
+      <form class="controls" autocomplete="off">
+        <label class="field">
+          <span class="field__label">Letters</span>
+          <input
+            id="letters"
+            name="letters"
+            type="text"
+            inputmode="latin"
+            autocapitalize="off"
+            autocorrect="off"
+            spellcheck="false"
+            placeholder="Type all the letters on the board"
+            disabled
+          />
+        </label>
 
-          <div
-            class="alert alert-primary"
-            style="display: none;"
-            data-bind="visible: total != ''">
-            <span data-bind="text: total"></span>
-            words in the dictionary
-            <a href="https://github.com/atebits/Words" target="_blank">
-              <sup>see more</sup>
-            </a>
-          </div>
+        <label class="field">
+          <span class="field__label">Required letters <span class="field__hint">(optional)</span></span>
+          <input
+            id="required"
+            name="required"
+            type="text"
+            inputmode="latin"
+            autocapitalize="off"
+            autocorrect="off"
+            spellcheck="false"
+            placeholder="Letters that must appear in every word"
+            disabled
+          />
+        </label>
+      </form>
 
-          <div
-            class="control-group"
-            style="display: none;"
-            data-bind="visible: total != ''">
-            <div class="form-group">
-              <label for="input-letters">Letters:</label>
-              <input
-                id="input-letters"
-                type="text"
-                autocapitalize="off"
-                autocorrect="off"
-                autocomplete="off"
-                placeholder="Type all letters from the grid..."
-                class="form-control">
-              <small class="form-text text-muted">Enter the letters you want to use.</small>
-            </div>
-            <div class="form-group">
-              <label for="input-required-letters">Required letters:</label>
-              <input
-                id="input-required-letters"
-                data-bind="value: requiredLetters, valueUpdate: 'afterkeyup'"
-                type="text"
-                autocapitalize="off"
-                autocorrect="off"
-                autocomplete="off"
-                placeholder="Type required letters..."
-                class="form-control">
-              <small class="form-text text-muted">Enter the letters that must be in the results.</small>
-            </div>
-          </div>
+      <p id="status" class="status" role="status">Loading dictionary…</p>
 
-          <div
-            class="alert alert-primary"
-            style="display: none;"
-            data-bind="visible: total != ''">
-            <span data-bind="text: found"></span> words found.
-          </div>
+      <ul id="results" class="results" aria-live="polite"></ul>
+    </main>
 
-          <p data-bind="text: wordsString"></p>
+    <footer class="footer">
+      <a href="https://github.com/romaklimenko/cheat">Source</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://github.com/atebits/Words">Dictionary</a>
+    </footer>
 
-
-
-
-        <div style="position:fixed; top:97%; left: 10px;">
-          <a href="./test.html" target="_blank">Tests</a>
-        </div>
-        <script src="./js/require.js"></script>
-        <script type="text/javascript">
-          require({baseUrl:'./js'},['main'],function(){});
-        </script>
-      </div>
-    </div>
-  </div>
-</body>
-
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
